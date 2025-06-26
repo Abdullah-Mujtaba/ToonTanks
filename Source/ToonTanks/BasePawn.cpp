@@ -15,7 +15,10 @@ ABasePawn::ABasePawn() //this is the class constructor
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Base Mesh"));
 	BaseMesh->SetupAttachment(CapsuleComp); //attaches this to the capsulecomp
 	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("turret Mesh"));
-	TurretMesh->SetupAttachment(TurretMesh);
+	TurretMesh->SetupAttachment(BaseMesh);
+	ProjectileSpawn = CreateDefaultSubobject<USceneComponent>(TEXT ("Projectile Spawn"));
+	ProjectileSpawn->SetupAttachment(TurretMesh);
+
 
 }
 
