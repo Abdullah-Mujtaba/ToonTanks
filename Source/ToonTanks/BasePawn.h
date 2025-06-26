@@ -15,7 +15,13 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite) //exposes this variable to the event graph
+	float VisibleDefaultOnly = 2.4;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //this makes it only read only in the events graph
+	float EditDefaultsOnly = 2.4; //only editable in the blueprint class
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Speed;
 
 protected:
