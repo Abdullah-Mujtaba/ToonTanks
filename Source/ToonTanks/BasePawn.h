@@ -29,19 +29,25 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY();
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component", meta = (AllowPrivateAccess = "true"));
 	class UCapsuleComponent* CapsuleComp; //reason we wrote class in front of it was that 
 	//we did not want to include the whole header file because that will in result lead to a 
 	//larger file
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component", meta = (AllowPrivateAccess = "true"));
 	UStaticMeshComponent* BaseMesh; //added by default in all actors so we dont need to forward declare it
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* TurretMesh;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawn;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Super Variable", meta = (AllowPrivateAccess = "true")); //what this does is allows the private variable to be accessed in the event graph as well
+	int32 VisibleAnywhere = 1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Super Variable", meta = (AllowPrivateAccess = "true"));
+	int32 EditAnywhere = 2;
 
 public:	
 	// Called every frame
