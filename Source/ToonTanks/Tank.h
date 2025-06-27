@@ -25,7 +25,7 @@ private:
 	class USpringArmComponent* springArm;
 	UPROPERTY(VisibleAnywhere, Category= "Camera");
 	class UCameraComponent* camera;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Movement", meta = (AllowPrivateAccess = "true"));
+	UPROPERTY(EditAnywhere, Category="Movement");
 	float speed;
 	
 	void Move(float value);
