@@ -4,6 +4,7 @@
 
 #include "BasePawn.h"
 #include "Components/CapsuleComponent.h" //if had not included this file it would have given the error that undefined UCapsuleComponent 
+#include "Kismet/GameplayStatics.h"
 // Sets default values
 ABasePawn::ABasePawn() //this is the class constructor
 {
@@ -22,21 +23,38 @@ ABasePawn::ABasePawn() //this is the class constructor
 
 }
 
-// Called when the game starts or when spawned
-void ABasePawn::BeginPlay()
+void ABasePawn::RotateTurret(FVector lookAtTarget)
 {
-	Super::BeginPlay();
+	FVector targetVector = lookAtTarget - TurretMesh->GetComponentLocation(); //we can use getcomponent location as it provides the location of
+	//every component
+	FRotator lookAtRotation = FRotator(0.f,targetVector.Rotation().Yaw, 0.f);
+	//what this does is only takes out the yaw and makes a FRotator variable and stores nothing fancy just calling a constructor.
+	TurretMesh->SetWorldRotation(
+		FMath::RInterpTo(
+			TurretMesh->GetComponentRotation(),
+			lookAtRotation,
+			UGameplayStatics::GetWorldDeltaSeconds(this),
+			15.f)); //FMath::RInterpTo is used here to interpolate the rotaiton so it is smoother
+	//it fills in the valeus in between so it is a smoother rotation
+	//what setworldrotation does is sets the rotation of the turret mesh to those coordinates
+};
+
+
+// Called when the game starts or when spawned
+// void ABasePawn::BeginPlay()
+// {
+// 	Super::BeginPlay();
 	
-}
+// }
 
 // Called every frame
-void ABasePawn::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	// FVector DeltaLocation(0.f); //Vector that will tell how much we want to move
-	// DeltaLocation.X = 2.f;
-	// AddActorLocalOffset(DeltaLocation);
-}
+// void ABasePawn::Tick(float DeltaTime)
+// {
+// 	Super::Tick(DeltaTime);
+// 	// FVector DeltaLocation(0.f); //Vector that will tell how much we want to move
+// 	// DeltaLocation.X = 2.f;
+// 	// AddActorLocalOffset(DeltaLocation);
+// }
 
 // Called to bind functionality to input
 // void ABasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

@@ -24,8 +24,7 @@ public:
 	
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	void RotateTurret(FVector lookAtTarget);
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component", meta = (AllowPrivateAccess = "true"));
@@ -50,7 +49,7 @@ private:
 
 public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	//virtual void Tick(float DeltaTime) override; 
 	
 	// Called to bind functionality to input
 	//this function allows us to handle input from a keyboard or mouse
