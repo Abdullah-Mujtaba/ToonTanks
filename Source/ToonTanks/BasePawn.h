@@ -21,8 +21,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //this makes it only read only in the events graph
 	float EditDefaultsOnly = 2.4; //only editable in the blueprint class
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float Speed;
+	
 
 protected:
 	// Called when the game starts or when spawned
@@ -52,9 +51,10 @@ private:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	
 	// Called to bind functionality to input
 	//this function allows us to handle input from a keyboard or mouse
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	//removing this because our tower (enemy) does not need to have this so removing this from here and adding
+	//it to tank.cpp
 };
