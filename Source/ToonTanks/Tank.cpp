@@ -22,6 +22,10 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAxis(TEXT("MoveForward"),this,&ATank::Move);
     PlayerInputComponent->BindAxis(TEXT("Turn"),this,&ATank::Turn); //PlayerInputcomponent is how we can map our
     //control bindings to the function/controls
+    PlayerInputComponent->BindAction(TEXT("Fire"),IE_Pressed,this,&ATank::Fire); //IE_Pressed is what tells us that when we press the
+    //button linked to this action only then execute the function
+    //the reason we were unable to use &ABasePawn::Fire was because the BindAction demands that the pointer should be of the same
+    //class where the function is being called so that is why.
 
 }
 
@@ -42,7 +46,7 @@ void ATank::Tick(float DeltaTime)
     {
         FHitResult hitResult;
         controller->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false,hitResult);
-        DrawDebugSphere(GetWorld(), hitResult.ImpactPoint,25.f,12,FColor::Red, false, -1.f);
+        //DrawDebugSphere(GetWorld(), hitResult.ImpactPoint,25.f,12,FColor::Red, false, -1.f);
         RotateTurret(hitResult.ImpactPoint);
     }
 }

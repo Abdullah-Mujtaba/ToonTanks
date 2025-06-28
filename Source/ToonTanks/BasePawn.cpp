@@ -5,6 +5,8 @@
 #include "BasePawn.h"
 #include "Components/CapsuleComponent.h" //if had not included this file it would have given the error that undefined UCapsuleComponent 
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
+
 // Sets default values
 ABasePawn::ABasePawn() //this is the class constructor
 {
@@ -39,6 +41,10 @@ void ABasePawn::RotateTurret(FVector lookAtTarget)
 	//what setworldrotation does is sets the rotation of the turret mesh to those coordinates
 };
 
+void ABasePawn::Fire()
+{
+	DrawDebugSphere(GetWorld(), ProjectileSpawn->GetComponentLocation(),25.f,12,FColor::Red, false, -3.f);
+}
 
 // Called when the game starts or when spawned
 // void ABasePawn::BeginPlay()
