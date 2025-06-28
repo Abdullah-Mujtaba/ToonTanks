@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Projectile.generated.h"
 
+
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
 {
@@ -27,4 +28,11 @@ public:
 private:
 	UPROPERTY(EditDefaultsOnly,Category = "Combat");
 	UStaticMeshComponent* ProjectileMesh; //added by default in all actors so we dont need to forward declare it
+	UPROPERTY(VisibleAnywhere, Category = "Combat");
+	class UProjectileMovementComponent* ProjectileMovement;
+	UFUNCTION()//we are doing this so we can bind it to a delegate, UFunction is the same thing as UProperty but for functions only
+	//it was an additional semicolon that caused the issue with the udefined variable for UFUNCTION
+	void OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	UPROPERTY(EditAnywhere)
+	float Damage = 50.f;
 };
