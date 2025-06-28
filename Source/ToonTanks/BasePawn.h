@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "BasePawn.generated.h"
 
+
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
 {
@@ -47,6 +48,10 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Super Variable", meta = (AllowPrivateAccess = "true"));
 	int32 EditAnywhere = 2;
+
+	UPROPERTY(EditDefaultsOnly, Category="Combat")
+	TSubclassOf<class AProjectile> ProjectileClass;
+	//this allows us to have a c++ variable that represents a class type which can be based on the projectile blueprint class that we made
 
 public:	
 	// Called every frame

@@ -27,5 +27,8 @@ private:
 	class ATank* tank; //name of the pointer is the same as the name of the class assigned by unreal not the file name
 	UPROPERTY(EditAnywhere,Category="Tower")
 	float fireRange = 300.f;
+	FTimerHandle FireRateTimerHandle;
+	float FireRate =2.f;
+	void CheckFireCondition();
 
 };
