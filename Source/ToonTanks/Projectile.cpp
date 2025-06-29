@@ -6,6 +6,9 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "GameFramework/DamageType.h"
 #include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h" //so we can use the 
+
+
 
 
 
@@ -19,6 +22,8 @@ AProjectile::AProjectile()
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovement->MaxSpeed = 1300.f;
 	ProjectileMovement->InitialSpeed = 1300.f;
+	SmokeTrail = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Smoke trail"));
+	SmokeTrail->SetupAttachment(RootComponent);
 
 }
 
@@ -52,6 +57,7 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor, UPrimit
 	auto MyOwner = GetOwner(); //stores the owner
 	if(MyOwner == nullptr)
 	{
+		Destroy(); //destroying the object because if no owner then why exist
 		return;
 	}
 	auto MyOwnerInstigator = MyOwner->GetInstigatorController(); //gets the controller of the actor that shot
@@ -63,6 +69,13 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor, UPrimit
 		UGameplayStatics::ApplyDamage(OtherActor,Damage,MyOwnerInstigator,this,DamageTypeClass);
 		//when we call this it will generate the damagevent
 		//the ontakedamage delegate will then broadcast to its function that are binded
-		Destroy(); //so the project destroys itself;
+		if(HitParticles)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(this,HitParticles,GetActorLocation(),GetActorRotation());
+		}
+		//the parameters are a worldcontextobject, ar particlesystem, location and rotation where we want to spawn/emit the effect
+		//since this is the last location before particle is destroyed it will spawn when it hits the person 
 	}
+	Destroy(); //so the projectile destroys itself;
+	//outside becuase if we hit something no matter what it is destroyed or if it fails to pass all the ifs it still gets destroyed
 }

@@ -28,7 +28,13 @@ ABasePawn::ABasePawn() //this is the class constructor
 
 void ABasePawn::HandleDestruction()
 {
+
 	//TODO: Handle visual and sounds here
+	if(DeathEffect)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this,DeathEffect,GetActorLocation(),GetActorRotation());
+	}
+
 }
 
 void ABasePawn::RotateTurret(FVector lookAtTarget)

@@ -54,6 +54,9 @@ private:
 	TSubclassOf<class AProjectile> ProjectileClass;
 	//this allows us to have a c++ variable that represents a class type which can be based on the projectile blueprint class that we made
 
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	UParticleSystem* DeathEffect;
+
 //public:	
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override; 
