@@ -26,6 +26,11 @@ ABasePawn::ABasePawn() //this is the class constructor
 
 }
 
+void ABasePawn::HandleDestruction()
+{
+	//TODO: Handle visual and sounds here
+}
+
 void ABasePawn::RotateTurret(FVector lookAtTarget)
 {
 	FVector targetVector = lookAtTarget - TurretMesh->GetComponentLocation(); //we can use getcomponent location as it provides the location of

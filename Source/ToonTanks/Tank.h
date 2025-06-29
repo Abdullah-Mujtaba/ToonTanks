@@ -19,6 +19,8 @@ public:
 	//this function allows us to handle input from a keyboard or mouse
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void Tick(float DeltaTime) override;
+	void HandleDestruction();
+	APlayerController* GetTankController() const {return controller;}
 
 protected:
 	// Called when the game starts or when spawned

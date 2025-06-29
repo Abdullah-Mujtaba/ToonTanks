@@ -22,6 +22,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) //this makes it only read only in the events graph
 	float EditDefaultsOnly = 2.4; //only editable in the blueprint class
 
+	void HandleDestruction();
 	
 
 protected:
@@ -53,7 +54,7 @@ private:
 	TSubclassOf<class AProjectile> ProjectileClass;
 	//this allows us to have a c++ variable that represents a class type which can be based on the projectile blueprint class that we made
 
-public:	
+//public:	
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override; 
 	

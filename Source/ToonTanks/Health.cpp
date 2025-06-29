@@ -3,6 +3,8 @@
 
 #include "Health.h"
 #include "GameFramework/Actor.h"
+#include "Kismet/GameplayStatics.h"
+#include "ToonTanksGameMode.h"
 
 
 // Sets default values for this component's properties
@@ -29,7 +31,7 @@ void UHealth::BeginPlay()
 	// ...
 	//the error we were getting was due to the wrong name of the delegate
 	//what I have done I am commenting out becasue it will use more space 
-	
+	gameMode = Cast<AToonTanksGameMode>(UGameplayStatics::GetGameMode(this));
 }
 
 
@@ -49,6 +51,10 @@ void UHealth::DamageTaken(AActor* DamagedActor, float Damage, const UDamageType*
 	}
 
 	Health-=Damage;
+	if(Health <=0 && gameMode)
+	{
+		gameMode->ActorDied(DamagedActor);
+	}
 	UE_LOG(LogTemp,Warning,TEXT("Damage done to the object max health is %f"),Health);
 
 

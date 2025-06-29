@@ -33,6 +33,7 @@ private:
 	//third is the damagetype in unreal we have explosive damage,poison damage and we can make our custom damage as well
 	//fourth parameter is the controller that caused that damage in one of the case our player controller
 	//fifth parameter is the actor that caused the damage
+	class AToonTanksGameMode* gameMode;
 
 public:	
 	// Called every frame
