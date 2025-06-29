@@ -87,6 +87,14 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor, UPrimit
 			UGameplayStatics::PlaySoundAtLocation(this,HitSound,GetActorLocation());//playing before death
 		}
 	
+		if(HitCameraShakeClass)
+		{
+
+			GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
+			//rest of the params are default, we just need to pass a variable that stores the class so that is what we did
+			//we assigned the camera shake to it from Blueprints
+		}
+
 	}
 	// UGameplayStatics::PlaySoundAtLocation(this,HitSound,GetActorLocation()); this over here works too but there is no check for this
 	Destroy(); //so the projectile destroys itself;

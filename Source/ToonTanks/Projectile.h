@@ -44,5 +44,8 @@ private:
 	class USoundBase* LaunchSound;
 	UPROPERTY(EditAnywhere,Category="Combat")
 	USoundBase* HitSound; // no need to forward declare it again because it was done once
-
+	UPROPERTY(EditAnywhere, Category="Combat")
+	class TSubclassOf<UCameraShakeBase> HitCameraShakeClass;
+	//“Create a variable that will store the class (not an instance) of any camera-shake asset derived from UCamerShakeBase. 
+	//Designers can pick a shake blueprint in the Details panel, and at runtime we can play that shake.”
 };

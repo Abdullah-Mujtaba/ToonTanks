@@ -30,10 +30,11 @@ void ABasePawn::HandleDestruction()
 {
 
 	//TODO: Handle visual and sounds here
-	if(DeathEffect && DeathSound)
+	if(DeathEffect && DeathSound&&DeathCameraShakeClass)
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(this,DeathEffect,GetActorLocation(),GetActorRotation());
 		UGameplayStatics::PlaySoundAtLocation(this,DeathSound,GetActorLocation());
+		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(DeathCameraShakeClass);
 
 	}
 
