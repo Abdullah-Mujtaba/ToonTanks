@@ -56,6 +56,7 @@ void ATank::HandleDestruction()
     Super::HandleDestruction();
     SetActorHiddenInGame(true); //hide the tank when we die so we can get the camera
     SetActorTickEnabled(false); //to disable the ticking for this actor
+    bAlive = false;
 }
 
 void ATank::Move(float value) //called every second because it is being passed as a parameter in SetupPLayerInputComponent

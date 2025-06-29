@@ -59,7 +59,7 @@ void ABasePawn::RotateTurret(FVector lookAtTarget)
 void ABasePawn::Fire()
 {
 	DrawDebugSphere(GetWorld(), ProjectileSpawn->GetComponentLocation(),25.f,12,FColor::Red, false, -3.f);
-	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass,ProjectileSpawn->GetComponentLocation(),ProjectileSpawn->GetComponentRotation());
+	AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass,ProjectileSpawn->GetComponentLocation(),ProjectileSpawn->GetComponentRotation());
 	Projectile->SetOwner(this); //doing this so whenever a pawn spawns a projectile it becomes the owner
 	//what auto does is lets the compiler figure out the type to assign to the variable
 }

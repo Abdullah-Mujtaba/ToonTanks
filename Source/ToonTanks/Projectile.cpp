@@ -61,14 +61,14 @@ void AProjectile::Tick(float DeltaTime)
 //the last parameter will hold all the hit information such as locationa and what not
 void AProjectile::OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	auto MyOwner = GetOwner(); //stores the owner
+	AActor* MyOwner = GetOwner(); //stores the owner
 	if(MyOwner == nullptr)
 	{
 		Destroy(); //destroying the object because if no owner then why exist
 		return;
 	}
-	auto MyOwnerInstigator = MyOwner->GetInstigatorController(); //gets the controller of the actor that shot
-	auto DamageTypeClass = UDamageType::StaticClass(); //creating this so we can use the default damagetype and fill the input parameter
+	AController* MyOwnerInstigator = MyOwner->GetInstigatorController(); //gets the controller of the actor that shot
+	UClass* DamageTypeClass = UDamageType::StaticClass(); //creating this so we can use the default damagetype and fill the input parameter
 
 	//we do not want to cause damage to ourselves if we are the projectile
 	if(OtherActor && OtherActor != this && OtherActor!= MyOwner)

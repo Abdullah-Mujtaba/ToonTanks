@@ -12,3 +12,11 @@ Saved
 *.suo
 *.xcodeproj
 *.xcworkspace
+*.exe
+*.pak
+*.ucas
+*.utoc
+Build/
+Binaries/
+Saved/
+Intermediate/
