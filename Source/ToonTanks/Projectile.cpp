@@ -37,6 +37,13 @@ void AProjectile::BeginPlay()
 	//the first parameter is the class that we are binding the function for 
 	//second parameter is the address of the function that we want to bind
 	
+	if(LaunchSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this,LaunchSound,GetActorLocation());  //calling it in beginplay because for the projectile
+		//begin play happens when it spawns
+	}
+	
+
 }
 
 // Called every frame
@@ -75,7 +82,13 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor, UPrimit
 		}
 		//the parameters are a worldcontextobject, ar particlesystem, location and rotation where we want to spawn/emit the effect
 		//since this is the last location before particle is destroyed it will spawn when it hits the person 
+		if(HitSound)
+		{	
+			UGameplayStatics::PlaySoundAtLocation(this,HitSound,GetActorLocation());//playing before death
+		}
+	
 	}
+	// UGameplayStatics::PlaySoundAtLocation(this,HitSound,GetActorLocation()); this over here works too but there is no check for this
 	Destroy(); //so the projectile destroys itself;
 	//outside becuase if we hit something no matter what it is destroyed or if it fails to pass all the ifs it still gets destroyed
 }

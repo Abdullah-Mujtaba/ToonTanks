@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Projectile.generated.h"
 
+// class SoundBase this is another way to forward declare it so we do not have to forward declare our first instance
 
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
@@ -39,5 +40,9 @@ private:
 	class UParticleSystem* HitParticles; 
 	UPROPERTY(VisibleAnywhere, Category="Combat")
 	class UParticleSystemComponent* SmokeTrail;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class USoundBase* LaunchSound;
+	UPROPERTY(EditAnywhere,Category="Combat")
+	USoundBase* HitSound; // no need to forward declare it again because it was done once
 
 };

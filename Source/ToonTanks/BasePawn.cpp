@@ -30,9 +30,11 @@ void ABasePawn::HandleDestruction()
 {
 
 	//TODO: Handle visual and sounds here
-	if(DeathEffect)
+	if(DeathEffect && DeathSound)
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(this,DeathEffect,GetActorLocation(),GetActorRotation());
+		UGameplayStatics::PlaySoundAtLocation(this,DeathSound,GetActorLocation());
+
 	}
 
 }

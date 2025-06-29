@@ -56,7 +56,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	UParticleSystem* DeathEffect;
-
+	
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class USoundBase* DeathSound;
 //public:	
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override; 
